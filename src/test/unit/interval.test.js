@@ -1,22 +1,16 @@
 const inter = require('../../interval');
 
-describe('Factorial', function () {
+describe('overlaps', function () {
 
-    test.each([
-        [0, 1],
-        [1, 1],
-        [2, 2],
-        [3, 6],
-        [4, 24],
-        [5, 120],
-    ])(
-        'Factorial %i equals to %i',
-        (n, expected) => {
-            expect(math.factorial(n)).toBe(expected);
-        },
-    );
+    test('Intervals overlap', () => {
+        let i1 = new inter.Interval(10, 15);
+        let i2 = new inter.Interval(13, 22);
+        expect(i1.overlaps(i2)).toBe(true);
+    });
 
-    test('Factorial of negative integers throws exception', () => {
-        expect(()=> {math.factorial(-10)}).toThrow();
+    test('Intervals do not overlap', () => {
+        let i1 = new inter.Interval(10, 15);
+        let i3 = new inter.Interval(20, 22);
+        expect(i1.overlaps(i3)).toBe(false);
     });
 });
