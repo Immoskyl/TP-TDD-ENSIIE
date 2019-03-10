@@ -1,7 +1,12 @@
 class Interval {
     constructor(start, end) {
-        this.start = start;
-        this.end = end
+        if (end < start) {
+            this.end = start;
+            this.start = end
+        } else {
+            this.start = start;
+            this.end = end
+        }
     }
 
     toString() {
@@ -23,7 +28,7 @@ class Interval {
      * @returns {boolean}
      */
     overlaps(interval) {
-        return this.end > interval.start && this.start < interval.end;
+    return (this.end >= interval.start && this.start <= interval.start) || (interval.end >= this.start && interval.start <= this.start);
     }
 
     /**
@@ -43,7 +48,7 @@ class Interval {
      * @returns {boolean}
      */
     includes(interval) {
-
+        return (this.start >= interval.start && this.end <= interval.end);
     };
 
     /**
