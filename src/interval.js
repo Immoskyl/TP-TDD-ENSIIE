@@ -68,7 +68,20 @@ class Interval {
      * @returns {Interval[]}
      */
     union(interval) {
-
+        let i1 = null;
+        let i2 = null;
+        if (this.start < interval.start)
+        {
+            i1 = this;
+            i2 = interval;
+        } else {
+            i2 = this;
+            i1 = interval;
+        }
+        if (i1.end >= i2.start) {
+            return [new Interval(i1.start, Math.max(i1.end, i2.end))];
+        }
+        return [i1, i2];
     };
 
     /**
@@ -88,7 +101,21 @@ class Interval {
      * @returns {Interval|null}
      */
     intersection(interval) {
-
+        let i1 = null;
+        let i2 = null;
+        if (this.start < interval.start)
+        {
+            i1 = this;
+            i2 = interval;
+        } else {
+            i2 = this;
+            i1 = interval;
+        }
+        if (i1.end < i2.start)
+        {
+            return null
+        }
+        return new Interval(i2.start, i1.end)
     };
 
     /**
