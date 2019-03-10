@@ -41,3 +41,34 @@ test('Interval overlap with a point', () => {
 
 });
 
+describe('includes', function () {
+
+    test('Interval includes1', () => {
+        let i1 = new Interval(10, 22);
+        let i2 = new Interval(13, 22);
+        expect(i1.overlaps(i2)).toBe(true);
+    });
+
+    test('Interval includes', () => {
+        let i1 = new Interval(10, 15);
+        expect(i1.includes(i1)).toBe(true);
+    });
+
+    test('Interval does not include', () => {
+        let i1 = new Interval(10, 15);
+        let i3 = new Interval(20, 22);
+        expect(i1.includes(i3)).toBe(false);
+    });
+
+    test('Interval does not include2', () => {
+        let i1 = new Interval(10, 15);
+        let i3 = new Interval(10, 22);
+        expect(i1.includes(i3)).toBe(false);
+    });
+
+    test('Interval includes a point at one edge', () => {
+        let i1 = new Interval(10, 15);
+        let i3 = new Interval(15, 15);
+        expect(i1.includes(i3)).toBe(true);
+    });
+});
