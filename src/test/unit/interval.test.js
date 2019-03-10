@@ -1,22 +1,43 @@
-const inter = require('../../interval');
+const Interval = require('../../interval');
 
-describe('Factorial', function () {
+//npm run test
 
-    test.each([
-        [0, 1],
-        [1, 1],
-        [2, 2],
-        [3, 6],
-        [4, 24],
-        [5, 120],
-    ])(
-        'Factorial %i equals to %i',
-        (n, expected) => {
-            expect(math.factorial(n)).toBe(expected);
-        },
-    );
+describe('overlaps', function () {
 
-    test('Factorial of negative integers throws exception', () => {
-        expect(()=> {math.factorial(-10)}).toThrow();
+    test('Intervals overlap1', () => {
+        let i1 = new Interval(10, 15);
+        let i2 = new Interval(13, 22);
+        expect(i1.overlaps(i2)).toBe(true);
     });
+
+    test('Intervals overlap2', () => {
+        let i1 = new Interval(10, 15);
+        expect(i1.overlaps(i1)).toBe(true);
+    });
+
+    test('Intervals do not overlap1', () => {
+        let i1 = new Interval(10, 15);
+        let i3 = new Interval(20, 22);
+        expect(i1.overlaps(i3)).toBe(false);
+    });
+
+    test('Intervals do not overlap2', () => {
+        let i1 = new Interval(10, 15);
+        let i3 = new Interval(20, 22);
+        expect(i3.overlaps(i1)).toBe(false);
+    });
+
+    test('Interval of one overlap', () => {
+        let i1 = new Interval(10, 15);
+        let i3 = new Interval(15, 22);
+        expect(i1.overlaps(i3)).toBe(true);
+    });
+
+test('Interval overlap with a point', () => {
+    let i1 = new Interval(10, 15);
+        let i3 = new Interval(14, 14);
+        expect(i1.overlaps(i3)).toBe(true);
+    });
+
 });
+
