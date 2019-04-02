@@ -135,7 +135,16 @@ class Interval {
      * @returns {Interval[]}
      */
     exclusion(interval) {
-
+        if (this.start === interval.start && this.end === interval.end)
+        {
+            return null;
+        }
+        let ret = this.union(interval);
+        if (ret.size === 1)
+        {
+            return [ret.intersection(interval)];
+        }
+        return ret
     };
 }
 
