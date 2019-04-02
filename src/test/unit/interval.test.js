@@ -155,7 +155,7 @@ describe('intersection', function () {
     });
 
     test('Interval reverse no intersection', () => {
-        let i1 = new Interval(19, 25);
+        let i1 = new Interval(25, 19);
         let i3 = new Interval(10, 17);
         expect(i1.intersection(i3)).toEqual(null);
     });
